@@ -15,7 +15,7 @@ function Articles({articles, sections}) {
 export default Articles;
 
 async function loadArticles() {
-    const response = await fetch("https://www.adressa.no/jon");
+    const response = await fetch("https://www.adressa.no/json");
 
     if (!response.ok) {
         throw json({statusText: "Kunne ikke hente artikler, last inn siden på nytt."});
