@@ -23,7 +23,7 @@ function ErrorPage() {
             break;
         default: 
             title = "Det oppsto en feil.";
-            message = "Det har beklageligvis oppstått noe rot i systemet, vennligst ta kontakt om dette vedvarer.";
+            message = error.statusText;
     }
 
     return (<>

@@ -1,4 +1,5 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { articlesLoader } from "./components/articles/Articles";
 import Layout from "./components/common/layout/Layout";
 import ErrorPage from "./pages/Error";
 import HomePage from "./pages/Home";
@@ -17,26 +18,32 @@ const router = createBrowserRouter([
             {
                 index: true,
                 element: <HomePage/>,
+                loader: articlesLoader,
             },
             {
                 path: "nyheter",
                 element: <NewsPage/>,
+                loader: articlesLoader,
             },
             {
                 path: "kultur",
                 element: <CulturePage/>,
+                loader: articlesLoader,
             },
             {
                 path: "sport",
                 element: <SportPage/>,
+                loader: articlesLoader,
             },
             {
                 path: "magasin",
                 element: <MagazinePage/>,
+                loader: articlesLoader,
             },
             {
                 path: "midtnorskdebatt",
                 element: <DebatePage/>,
+                loader: articlesLoader,
             },
         ],
     },
