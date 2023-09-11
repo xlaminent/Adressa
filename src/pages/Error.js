@@ -5,23 +5,25 @@ import Footer from '../components/common/layout/Footer';
 function ErrorPage() {
     const error = useRouteError();
 
-    let title = "Det oppsto en feil.";
-    let message = "Det har beklageligvis oppstått noe rot i systemet, vennligst ta kontakt om dette vedvarer.";
+    let title;
+    let message;
 
-
-    if (error.status === 401) {
-        title = "Innlogging kreves.";
-        message = "Du har ikke tilgang til denne siden.";
-    } 
-    
-    if (error.status === 403) {
-        title = "Ingen tilgang.";
-        message = "Vennligst logg inn igjen og forsøk på nytt.";
-    } 
-    
-    if (error.status === 404) {
-        title = "Ops!";
-        message = "Vi kunne ikke finne siden du så etter.";
+    switch (error.status) {
+        case 401: 
+            title = "Innlogging kreves.";
+            message = "Du har ikke tilgang til denne siden.";            
+            break;
+        case 403:
+            title = "Ingen tilgang.";
+            message = "Vennligst logg inn igjen og forsøk på nytt.";
+            break;
+        case 404: 
+            title = "Ops!";
+            message = "Vi kunne ikke finne siden du så etter.";
+            break;
+        default: 
+            title = "Det oppsto en feil.";
+            message = "Det har beklageligvis oppstått noe rot i systemet, vennligst ta kontakt om dette vedvarer.";
     }
 
     return (<>
