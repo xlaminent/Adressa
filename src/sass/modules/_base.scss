@@ -1,0 +1,28 @@
+$white: #ffffff;
+$primary-blue: #005379;
+$secondary-blue: #28aae2;
+$background-grey: #f9f9f9; 
+$footer-background: #f1f1f1;
+
+$sm-devices: 600px;
+$md-devices: 992px; 
+$lg-devices: 1200px;
+
+*, *:before, *:after {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+body, #root {
+    margin: 0;
+    position: relative;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: $background-grey;
+}

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { articleTypes, bundleFilteredArticles } from "../../utils/bundleArticles";
+import ArticleSection from "./ArticleSection";
 
 function ArticleList({ articles, sections }) {
     const [groupedArticlesList, setGroupedArticlesList] = useState([]);
@@ -57,27 +58,28 @@ function ArticleList({ articles, sections }) {
             callback();
         }, delay);
     }
-
+    
     return (
         <div>
             {filteredArticles?.length > 0 ? <>
-                <ul>
+                <div className="bundles">
                     {groupedArticlesList.map((articleGroup) => {
                             if (articleGroup.type.name === articleTypes[0].name) {
-                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[0].name}/>
                             } else if (articleGroup.type.name === articleTypes[1].name) {
-                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[1].name}/>
                             } else if (articleGroup.type.name === articleTypes[2].name) {
-                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[2].name}/>
                             } else if (articleGroup.type.name === articleTypes[3].name) {
-                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[3].name}/>
+                            } else if (articleGroup.type.name === articleTypes[4].name) {
+                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[4].name}/>
                             } else {
-                                // Fallback row type
-                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                                return <div>{articleGroup.articles.map(article => <p>{article.title}</p>)}</div>;
                             }
                         }
                     )}
-                </ul>
+                </div>
                 {isLoading && <p>Laster ... </p>}</>         
             : "Fant ingen artikler om dette temaet."}
         </div>
