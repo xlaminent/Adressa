@@ -1,7 +1,10 @@
 import { useState, useEffect, useRef } from "react";
+import { articleTypes, bundleFilteredArticles } from "../../utils/bundleArticles";
 
 function ArticleList({ articles, sections }) {
+    const [groupedArticlesList, setGroupedArticlesList] = useState([]);
     const [itemsToLoad, setItemsToLoad] = useState(20);
+    const [startSlice, setStartSlice] = useState(0);
     const [isLoading, setIsLoading] = useState(false);
 
     const timerDebounceRef = useRef();
@@ -9,6 +12,7 @@ function ArticleList({ articles, sections }) {
     const filteredArticles = sections.length > 0 ? articles.filter((a) => sections.includes(a._polaris_extra.section)) : articles;
 
     useEffect(() => {
+        bundleFilteredArticles(filteredArticles, startSlice, itemsToLoad, setGroupedArticlesList, setStartSlice);
         window.addEventListener('scroll', () => debounceOnScroll(handleListScroll, 500));
         return () => window.removeEventListener('scroll', () => debounceOnScroll(handleListScroll, 500));
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,23 +30,25 @@ function ArticleList({ articles, sections }) {
     }, [isLoading]);
 
     const handleListScroll = () => {
-        // change loading state (and thereby "fetch" more data) if we're (almost) at the bottom of the page
+        // endre state for loading hvis vi er på bunnen av siden (nesten); triggrer ny "fetch" i useEffect 
         if ((window.innerHeight + document.documentElement.scrollTop + 10) >= document.body.offsetHeight) {
-            console.log("ja")
             setIsLoading(true);
         } 
     }
 
     const handleLoadMore = () => {
-        // simulate load time, 3 seconds
+        // simulater innlastning (3 sekunder), øker mengden av artikler som skal lastes inn med 20
+
         setTimeout(() => {
-            setItemsToLoad(itemsToLoad + 10);
+            const newItemsToLoad = itemsToLoad + 20;
+            setItemsToLoad(newItemsToLoad);
+            bundleFilteredArticles(filteredArticles, startSlice, newItemsToLoad, setGroupedArticlesList , setStartSlice);
             setIsLoading(false);
-        }, 3000);
+        }, 1000);
     };
 
     const debounceOnScroll = (callback, delay) => {
-        // using debouncing to skip excess function execution on scroll
+        // bruk debouncing for å hoppe over overflødig funksjonskall ved scrolling
         if (timerDebounceRef.current){
             clearTimeout(timerDebounceRef.current);
         }
@@ -56,11 +62,21 @@ function ArticleList({ articles, sections }) {
         <div>
             {filteredArticles?.length > 0 ? <>
                 <ul>
-                    {filteredArticles.slice(0, itemsToLoad).map((article) => (
-                        <li key={article.id}>
-                            {article.title}
-                        </li>
-                    ))}
+                    {groupedArticlesList.map((articleGroup) => {
+                            if (articleGroup.type.name === articleTypes[0].name) {
+                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                            } else if (articleGroup.type.name === articleTypes[1].name) {
+                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                            } else if (articleGroup.type.name === articleTypes[2].name) {
+                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                            } else if (articleGroup.type.name === articleTypes[3].name) {
+                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                            } else {
+                                // Fallback row type
+                                return <li style={{height: "70px"}}>{articleGroup.articles.map(article => <p>{article.title}</p>)}</li>;
+                            }
+                        }
+                    )}
                 </ul>
                 {isLoading && <p>Laster ... </p>}</>         
             : "Fant ingen artikler om dette temaet."}
@@ -69,3 +85,4 @@ function ArticleList({ articles, sections }) {
 }
 
 export default ArticleList;
+
