@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { articleTypes, bundleFilteredArticles } from "../../utils/bundleArticles";
+import { generateUUID } from "../../utils/generateUUID";
 import ArticleSection from "./ArticleSection";
 
 function ArticleList({ articles, sections }) {
@@ -58,22 +59,22 @@ function ArticleList({ articles, sections }) {
             callback();
         }, delay);
     }
-    
+
     return (
         <div>
             {filteredArticles?.length > 0 ? <>
                 <div className="bundles">
                     {groupedArticlesList.map((articleGroup) => {
                             if (articleGroup.type.name === articleTypes[0].name) {
-                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[0].name}/>
+                                return <ArticleSection key={generateUUID()} articles={articleGroup.articles} sectionClass={articleTypes[0].name}/>
                             } else if (articleGroup.type.name === articleTypes[1].name) {
-                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[1].name}/>
+                                return <ArticleSection key={generateUUID()} articles={articleGroup.articles} sectionClass={articleTypes[1].name}/>
                             } else if (articleGroup.type.name === articleTypes[2].name) {
-                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[2].name}/>
+                                return <ArticleSection key={generateUUID()} articles={articleGroup.articles} sectionClass={articleTypes[2].name}/>
                             } else if (articleGroup.type.name === articleTypes[3].name) {
-                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[3].name}/>
+                                return <ArticleSection key={generateUUID()} articles={articleGroup.articles} sectionClass={articleTypes[3].name}/>
                             } else if (articleGroup.type.name === articleTypes[4].name) {
-                                return <ArticleSection articles={articleGroup.articles} sectionClass={articleTypes[4].name}/>
+                                return <ArticleSection key={generateUUID()} articles={articleGroup.articles} sectionClass={articleTypes[4].name}/>
                             } else {
                                 return <div>{articleGroup.articles.map(article => <p>{article.title}</p>)}</div>;
                             }
