@@ -6,10 +6,7 @@ function NewsPage() {
     const sections = ["nyheter", "trondheim", "trøndelag", "politikk", "mn24", "nyhetsstudio", "utenriks", "innenriks"];
     
     return (
-        <>
-            <h1>Nyheter</h1>
-            <Articles articles={items} sections={sections}/>
-        </>
+        <Articles articles={items} sections={sections}/>
     );
 }
 

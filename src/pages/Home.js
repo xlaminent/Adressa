@@ -6,10 +6,7 @@ function HomePage() {
     const sections = [];
 
     return (
-        <>
-            <h1>Hjem</h1>
-            <Articles articles={items} sections={sections}/>
-        </>
+        <Articles articles={items} sections={sections}/>
     );
 }
 

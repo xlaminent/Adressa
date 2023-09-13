@@ -6,10 +6,7 @@ function MagazinePage() {
     const sections = ["magasin"];
 
     return (
-        <>
-            <h1>Ukeadressa</h1>
-            <Articles articles={items} sections={sections}/>
-        </>
+        <Articles articles={items} sections={sections}/>
     );
 }
 

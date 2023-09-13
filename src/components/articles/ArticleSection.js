@@ -5,7 +5,7 @@ function ArticleSection({articles, sectionClass}) {
         <>
             <section className={`bundles__bundle ${"bundles__bundle--" + sectionClass}`}>
                 {articles.map((article) => 
-                    <ArticleItem article={article}/>
+                    <ArticleItem article={article} key={article.id}/>
                 )}
             </section>
         </>

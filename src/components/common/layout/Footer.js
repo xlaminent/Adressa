@@ -1,6 +1,10 @@
+import logo from "../../../assets/adressa_logo-dark.svg";
+
 function Footer() {
     return (
-        <h1>footer</h1>
+        <footer>
+            <img src={logo} alt="Adresseavisen logo"/>
+        </footer>
     )
 }
 
