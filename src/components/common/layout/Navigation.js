@@ -6,16 +6,14 @@ function Navigation() {
     const [isScrolled, setScrolled] = useState(false);
 
     useEffect(() => {
-        window.addEventListener("scroll", handleScroll);
+        window.addEventListener('scroll', handleScroll);
     
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
+        return () => {window.removeEventListener('scroll', handleScroll)};
     }, []);
 
 
     const handleScroll = () => {
-        if(window.scrollY > 5) {
+        if (window.scrollY > 5) {
             setScrolled(true);
         } else {
             setScrolled(false);
