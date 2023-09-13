@@ -33,8 +33,8 @@ function ArticleList({ articles, sections }) {
     }, [isLoading]);
 
     const handleListScroll = () => {
-        // endre state for loading hvis vi er på bunnen av siden (nesten); triggrer ny "fetch" i useEffect 
-        if ((window.innerHeight + document.documentElement.scrollTop + 10) >= document.body.offsetHeight) {
+        // endre state for loading hvis vi er på bunnen av siden; triggrer ny "fetch" i useEffect 
+        if ((window.innerHeight + document.documentElement.scrollTop) >= document.body.offsetHeight) {
             setIsLoading(true);
         } 
     }
