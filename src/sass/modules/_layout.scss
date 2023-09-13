@@ -102,6 +102,10 @@ header {
                         background-color: $primary-blue;
                         color: white;
                     }
+
+                    &:hover {
+                        text-shadow: 0 0 0.2px;
+                    }
                 }
             }
         }
