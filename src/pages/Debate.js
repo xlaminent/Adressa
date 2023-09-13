@@ -6,7 +6,9 @@ function DebatePage() {
     const sections = ["midtnorskdebatt", "politikk", "meninger", "skikk og bruk"];
     
     return (
-        <Articles articles={items} sections={sections}/>
+        <div className="wrapper">
+            <Articles articles={items} sections={sections}/>
+        </div>
     );
 }
 

@@ -1,10 +1,11 @@
 import { Suspense } from "react";
 import { json, defer, Await } from "react-router-dom";
+import Loader from "../common/Loader";
 import ArticleList from "./ArticleList";
 
 function Articles({articles, sections}) {
     return (
-        <Suspense fallback={<p>Laster inn data...</p>}>
+        <Suspense fallback={<Loader message="Laster inn artikler ..."/>}>
             <Await resolve={articles}>
                 {(loadedArticles) => <ArticleList articles={loadedArticles} sections={sections} />}
             </Await>

@@ -6,7 +6,9 @@ function MagazinePage() {
     const sections = ["magasin"];
 
     return (
-        <Articles articles={items} sections={sections}/>
+        <div className="wrapper">
+            <Articles articles={items} sections={sections}/>
+        </div>
     );
 }
 

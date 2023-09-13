@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { articleTypes, bundleFilteredArticles } from "../../utils/bundleArticles";
 import { generateUUID } from "../../utils/generateUUID";
+import Loader from "../common/Loader";
 import ArticleSection from "./ArticleSection";
 
 function ArticleList({ articles, sections }) {
@@ -61,7 +62,7 @@ function ArticleList({ articles, sections }) {
     }
 
     return (
-        <div>
+        <div className="wrapper">
             {filteredArticles?.length > 0 ? <>
                 <div className="bundles">
                     {groupedArticlesList.map((articleGroup) => {
@@ -81,7 +82,7 @@ function ArticleList({ articles, sections }) {
                         }
                     )}
                 </div>
-                {isLoading && <p>Laster ... </p>}</>         
+                {isLoading && <Loader message={"Laster inn artikler ..."}/>}</>         
             : "Fant ingen artikler om dette temaet."}
         </div>
     );

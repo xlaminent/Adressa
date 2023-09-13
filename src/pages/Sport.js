@@ -6,7 +6,9 @@ function SportPage() {
     const sections = ["sport", "fotball", "rbk", "langrenn", "sprek"];
     
     return (
-        <Articles articles={items} sections={sections}/>
+        <div className="wrapper">
+            <Articles articles={items} sections={sections}/>
+        </div>
     );
 }
 

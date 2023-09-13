@@ -6,7 +6,9 @@ function CulturePage() {
     const sections = ["kultur", "trd.by", "familie og oppvekst"];
     
     return (
-        <Articles articles={items} sections={sections}/>
+        <div className="wrapper">
+            <Articles articles={items} sections={sections}/>
+        </div>
     );
 }
 

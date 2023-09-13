@@ -6,7 +6,9 @@ function HomePage() {
     const sections = [];
 
     return (
-        <Articles articles={items} sections={sections}/>
+        <div className="wrapper">
+            <Articles articles={items} sections={sections}/>
+        </div>
     );
 }
 
